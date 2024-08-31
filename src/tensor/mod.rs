@@ -26,6 +26,22 @@ pub enum GeneralTensor {
     Usize(Tensor<usize>),
 }
 
+pub fn randomTensor(row: usize, col: usize) -> Tensor<f32> {
+    // let mut t1 = vec![];
+    let mut t = vec![];
+    for i in 0..row {
+        for j in 0..col {
+            let temp: f32 = thread_rng().gen();
+            t.push(temp);
+        }
+        // t1.push(t);
+    }
+    Tensor {
+        blob: t,
+        shape: vec![row, col],
+    }
+}
+
 impl GeneralTensor {
     pub fn size(&self) -> usize {
         match self {
